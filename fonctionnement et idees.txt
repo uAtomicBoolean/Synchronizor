@@ -1,0 +1,28 @@
+TODO:
+	- Trouver le nom
+	- Faire la roadmap de dev (vraiment progressive pour ne pas se perdre et abandonner le projet). Il faut vraiment y réfléchir.
+	- Trouver comment transférer les fichiers d'une machine à une autre: drive ou ssh (voir comment faire sans que le pc reste full allumé), ou vps de stockage.
+
+
+Fonctionnement général:
+	Le script sera exécuté en tâche de fond du système et aura une interface CUI avec une commande 'status'.
+	On pourra indiquer quels sont les dossiers à synchroniser et dans quel dossier parent.
+	Le script regardera toutes les X minutes si il y a eu des changements et updatera le stockage.
+	Des commandes existeront pour mettre en pause, arrêter, relancer le process et synchroniser de force un dossier (regarder les diffs et demander si il faut synchro).
+	Il existera un système de .gitignore afin d'éviter d'uploader des fichiers/dossiers inutiles.
+	Les données du process seront stockées dans un dossier/fichiers:
+		- Un fichier config contenant les paramètres du script.
+		- Un fichier config par dossier synchroniser contenant les paramètres spécifique du dossier et le gitignore.
+		- Un fichier diff (revoir le nom) par dossier contenant le nom des fichiers/dossiers et leur hash.
+
+	Le script chargera le dossier config de base puis chaque dossier synchro sera représenté comme un objet dans le programme avec ses propres paramètres chargés
+	depuis son fichier config. Le contenu du fichier diff ne sera chargé que quand une synchronisation sera effectuée.
+
+Fonctionnement de la vérification de différences:
+	Le script regardera 2 choses: le nom des fichiers/dossier et le hash des fichiers.
+	Si un dossier/fichier change de nom, alors il le considera comme supprimé pour l'ancien nom et comme ajouté pour le nouveau (voir fonctionnement git).
+	Si un fichier à un changement dans le contenu, alors son hash changera.
+
+
+Roadmap de développement:
+	- 
